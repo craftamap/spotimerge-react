@@ -18,6 +18,8 @@ export const Stages = {
   EDIT_PLAYLIST: 'EDIT_PLAYLIST',
 }
 
+let flagId = 1
+
 const useStore = create(devtools((set, get) => ({
   auth: {
     isLoggedIn: false,
@@ -36,8 +38,17 @@ const useStore = create(devtools((set, get) => ({
   },
   flags: [],
   addFlag: (flagData) => {
+    const fId = flagId++
     set(() => ({
-      flags: [flagData, ...get().flags],
+      flags: [{ ...flagData, id: fId }, ...get().flags],
+    }))
+    setTimeout(() => {
+      get().removeFlag(fId)
+    }, 5000)
+  },
+  removeFlag: (flagId) => {
+    set(() => ({
+      flags: get().flags.filter((f) => f.id !== flagId),
     }))
   },
   switchToSelectPlaylist: async () => {

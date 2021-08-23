@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Header from './components/Header'
@@ -18,12 +18,12 @@ const GlobalStyle = css`
 
 function BasePage () {
   return (
-        <Fragment>
-            <Global styles={GlobalStyle}/>
-            <Header />
-            <Views />
-            <Flags />
-        </Fragment>
+    <>
+      <Global styles={GlobalStyle}/>
+      <Header />
+      <Views />
+      <Flags />
+    </>
   )
 }
 
