@@ -1,28 +1,65 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import useStore from '../store'
 import PlaylistEntry from '../components/form/PlaylistEntry'
 import Button from '../components/form/Button'
 import CreatePlaylistEntry from '../components/form/CreatePlaylistEntry'
 import styled from '@emotion/styled'
 
+const Songs = styled.ul`
+  padding-left: 0; 
+  list-style-type: none;
+
+  li {
+    padding-bottom: 0.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". ."
+      "artist artist"; 
+  }
+  li>div:nth-child(2) {
+    justify-self:end;
+    
+  }
+  li>div:last-child {
+    grid-area: artist;
+    color: hsl(0,0%,40%);
+  }
+`
+
 export default function EditPlaylist () {
+  const selectedPlaylistTitle = useStore((state) => { return state.fetchedPlaylists[state.selectedPlaylist].information.name })
   const rebuildSelectedPlaylist = useStore((state) => { return state.rebuildSelectedPlaylist })
   const playlistTracks = useStore((state) => { return state.fetchedPlaylists[state.selectedPlaylist].tracks })
   const updatePlaylistDescription = useStore((state) => { return state.updatePlaylistDescription })
+  const isRebuilding = useStore((state) => { return state.isRebuilding })
 
-  const rows = playlistTracks.map((row) => {
-    return <li key={row.uri}>{row.name} - {row.artist.name}</li>
-  })
+  const rows = useMemo(() => playlistTracks.map((row) => {
+    return (
+      <li key={row.uri}>
+        <div>{row.name}</div><div>{Math.floor(row.duration / 1000 / 60)}min {Math.floor(row.duration / 1000 % 60)}s</div>
+        <div>{row.artist.name}</div>
+      </li>
+    )
+  }), [playlistTracks])
   const playlistForm = useStore((state) => { return state.editPlaylistForm })
   return (
-    <div>
+    <>
+      <h2>{selectedPlaylistTitle}</h2>
       <div>
-        {playlistForm.playlistIds.map((p) => <PlaylistEntry playlistId={p} key={p}/>)}
-        <CreatePlaylistEntry/>
+        <h3>Merged Playlists</h3>
+        <div>
+          {playlistForm.playlistIds.map((p) => <PlaylistEntry playlistId={p} key={p}/>)}
+          <CreatePlaylistEntry/>
+        </div>
+        <Button onClick={updatePlaylistDescription}>Save merged playlists</Button>
+        <Button onClick={rebuildSelectedPlaylist} loading={isRebuilding}>Rebuild track list</Button>
+        <Songs>
+          {rows}
+        </Songs>
       </div>
-      <Button onClick={updatePlaylistDescription}>Update</Button>
-      <Button onClick={rebuildSelectedPlaylist}>Rebuild</Button>
-      {rows}
-    </div>
+    </>
   )
 }

@@ -1,5 +1,19 @@
+import styled from '@emotion/styled'
+import { MinusCircleIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import useStore from '../../store'
+import Button from './Button'
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  align-items: center;
+  border-bottom: 1px grey solid;
+
+  &:last-child {
+    border-bottom: 0px grey solid;
+  }
+`
 
 export default function PlaylistEntry ({ playlistId }) {
   const [playlists, fetchPlaylist, removePlaylistFromEditForm] = useStore((state) => [state.fetchedPlaylists, state.fetchPlaylist, state.removePlaylistFromEditForm])
@@ -8,8 +22,9 @@ export default function PlaylistEntry ({ playlistId }) {
   }, [])
 
   return (
-    <div>
-      <span>{playlists[playlistId]?.information?.name ?? playlistId}</span><button onClick={() => { removePlaylistFromEditForm(playlistId) }}>delete</button>
-    </div>
+    <Wrapper>
+      <span>{playlists[playlistId]?.information?.name ?? playlistId}</span>
+      <Button look={'icon'} onClick={() => { removePlaylistFromEditForm(playlistId) }}><MinusCircleIcon width="1.2em" /></Button>
+    </Wrapper>
   )
 }

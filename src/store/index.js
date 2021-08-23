@@ -28,6 +28,7 @@ const useStore = create(devtools((set, get) => ({
   spotimergePlaylists: {},
   fetchedPlaylists: {},
   isLoading: false,
+  isRebuilding: false,
   currentStage: Stages.SELECT_PATH,
   selectedPlaylist: '',
   editPlaylistForm: {
@@ -75,10 +76,11 @@ const useStore = create(devtools((set, get) => ({
   },
   decodePlaylistDescriptionOfSelectedPlaylist: () => {
     const playlistsInDescription = JSON.parse(htmlDecode(htmlDecode(get().fetchedPlaylists[get().selectedPlaylist].information.description)))?.p || []
+    // Let's make them unique here, as we do not allow doubled ids
     set(() => ({
       editPlaylistForm: {
         ...get().editPlaylistForm,
-        playlistIds: playlistsInDescription,
+        playlistIds: [...new Set(playlistsInDescription)],
       },
     }))
   },
@@ -174,6 +176,7 @@ const useStore = create(devtools((set, get) => ({
         uri: track?.track?.uri,
         name: track?.track?.name,
         artist: track?.track?.artists[0],
+        duration: track?.track?.duration_ms,
       }
     })
 
@@ -277,6 +280,7 @@ const useStore = create(devtools((set, get) => ({
     })
   },
   rebuildSelectedPlaylist: async () => {
+    set(() => ({ isRebuilding: true }))
     await Promise.all(get().editPlaylistForm.playlistIds.map((id) => {
       return get().fetchPlaylistTracks(id)
     }))
@@ -302,6 +306,7 @@ const useStore = create(devtools((set, get) => ({
     // TODO: maybe don't do this?
     await get().fetchPlaylist(get().selectedPlaylist)
     await get().fetchPlaylistTracks(get().selectedPlaylist)
+    set(() => ({ isRebuilding: false }))
   },
 })))
 

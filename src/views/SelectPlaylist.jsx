@@ -21,9 +21,12 @@ export default function SelectPlaylist () {
   const [selected, setSelected] = useState(null)
 
   return (
-    <div>
-      <Select options={options} value={selected} onChange={(option) => { setSelected(option) }}/>
-      <Button onClick={() => { if (selected !== null) { switchToEditPlaylist(selected.value) } }}>select</Button>
-    </div>
+    <>
+      <h2>Which Playlist Do you want to edit?</h2>
+      <div>
+        <Select options={options} value={selected} onChange={(option) => { setSelected(option) }}/>
+        <Button onClick={() => { if (selected !== null) { switchToEditPlaylist(selected.value) } }}>select</Button>
+      </div>
+    </>
   )
 }

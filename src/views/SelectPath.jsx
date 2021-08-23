@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 800px) {
-    	flex-direction: column;
+    flex-direction: column;
   }
 `
 
@@ -27,15 +27,18 @@ export default function SelectPath () {
   const [switchToSelectPlaylist, switchToCreatePlaylist] = useStore((state) => [state.switchToSelectPlaylist, state.switchToCreatePlaylist])
 
   return (
-    <Wrapper>
-      <button onClick={switchToSelectPlaylist}>
-        <CollectionIcon width="36px" /><br/>
-        Select existing Playlist
-      </button>
-      <button onClick={switchToCreatePlaylist}>
-        <PlusIcon width="36px" /><br/>
-        Create a new Playlist
-      </button>
-    </Wrapper>
+    <>
+      <h2>What do you want to do?</h2>
+      <Wrapper>
+        <button onClick={switchToSelectPlaylist}>
+          <CollectionIcon width="36px" /><br />
+          Select existing Playlist
+        </button>
+        <button onClick={switchToCreatePlaylist}>
+          <PlusIcon width="36px" /><br />
+          Create a new Playlist
+        </button>
+      </Wrapper>
+    </>
   )
 }
