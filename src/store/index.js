@@ -34,6 +34,12 @@ const useStore = create(devtools((set, get) => ({
   editPlaylistForm: {
     playlistIds: [],
   },
+  flags: [],
+  addFlag: (flagData) => {
+    set(() => ({
+      flags: [flagData, ...get().flags],
+    }))
+  },
   switchToSelectPlaylist: async () => {
     set(() => ({
       isLoading: true,
@@ -307,6 +313,7 @@ const useStore = create(devtools((set, get) => ({
     await get().fetchPlaylist(get().selectedPlaylist)
     await get().fetchPlaylistTracks(get().selectedPlaylist)
     set(() => ({ isRebuilding: false }))
+    get().addFlag({ title: 'Sucessfully rebuilt track list', content: `${newSongs.length} new songs got added, and ${songsToDelete.length} songs got removed.` })
   },
 })))
 

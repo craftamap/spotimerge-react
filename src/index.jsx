@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Views from './views/Views'
 import useStore from './store'
 import { Global, css } from '@emotion/react'
+import Flags from './components/Flags'
 
 const GlobalStyle = css`
   html, body {
@@ -19,6 +20,7 @@ function BasePage () {
             <Global styles={GlobalStyle}/>
             <Header />
             <Views />
+            <Flags />
         </Fragment>
   )
 }
