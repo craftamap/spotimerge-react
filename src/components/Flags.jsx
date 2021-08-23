@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
 const Flag = styled.div`
   display: grid;
+  position: relative;
   grid-template-areas: 
     "icon ."
     "icon .";
@@ -35,6 +36,22 @@ const Flag = styled.div`
     height: 24px;
     color: green;
   }
+
+  .close {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    border-radius: 50%;
+    border: 1px solid hsl(0,0%,70%);
+    width: 16px;
+    height: 16px;
+    background: white;
+    visibility: hidden;
+  }
+
+  :hover .close {
+    visibility: visible;
+  }
 `
 
 export default function Flags () {
@@ -46,6 +63,7 @@ export default function Flags () {
         <div className="icon"><CheckCircleIcon /></div>
         <h1>{flag?.title}</h1>
         <div>{flag?.content}</div>
+        <div className="close">x</div>
       </Flag>
     )
   })

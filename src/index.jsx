@@ -8,9 +8,11 @@ import { Global, css } from '@emotion/react'
 import Flags from './components/Flags'
 
 const GlobalStyle = css`
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
   html, body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
   }
 `
 
