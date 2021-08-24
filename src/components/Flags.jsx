@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import useStore from '../store'
-import { CheckCircleIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon, XIcon } from '@heroicons/react/outline'
 
 const Wrapper = styled.div`
   position: fixed;
   left: 3em; 
   bottom: 3em;
-  height: 200px;
+  height: 150px;
   width: 500px;
   pointer-events: none;
 `
 
 const Flag = styled.div`
   display: grid;
-  position: relative;
   grid-template-areas: 
-    "icon ."
-    "icon .";
+    "icon . close"
+    "icon . .";
+  grid-template-columns: 24px 1fr 16px;
+  grid-gap: 0 8px;
   pointer-events: auto;
   border: 1px solid hsl(0,0%,70%);
   border-radius: 4px;
@@ -38,15 +39,11 @@ const Flag = styled.div`
   }
 
   .close {
-    position: absolute;
-    right: -8px;
-    top: -8px;
-    border-radius: 50%;
-    border: 1px solid hsl(0,0%,70%);
     width: 16px;
     height: 16px;
     background: white;
     visibility: hidden;
+    cursor: pointer;
   }
 
   :hover .close {
@@ -56,14 +53,17 @@ const Flag = styled.div`
 
 export default function Flags () {
   const flags = useStore((store) => store.flags)
+  const removeFlag = useStore((store) => store.removeFlag)
 
   const flagContent = flags.map((flag, idx) => {
     return (
-      <Flag key={idx}>
+      <Flag key={flag?.id}>
         <div className="icon"><CheckCircleIcon /></div>
         <h1>{flag?.title}</h1>
+        <div className="close" onClick={() => {
+          removeFlag(flag?.id)
+        }}><XIcon/></div>
         <div>{flag?.content}</div>
-        <div className="close">x</div>
       </Flag>
     )
   })

@@ -16,7 +16,7 @@ const flags = (set, get) => ({
     }))
     setTimeout(() => {
       get().removeFlag(fId)
-    }, 5000)
+    }, 10_000)
   },
   removeFlag: (flagId) => {
     set(() => ({
