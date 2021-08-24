@@ -39,11 +39,23 @@ const openPopup = () => {
 }
 
 export default function Header (props) {
-  const [isLoggedIn, token] = useStore((state) => [state.auth.isLoggedIn, state.auth.token])
+  const [isLoggedIn, token, removeTokenFromStorage] = useStore((state) => [state.auth.isLoggedIn, state.auth.token, state.removeTokenFromStorage])
   let links = <li><a onClick={openPopup}>Login</a></li>
 
   if (isLoggedIn) {
-    links = <li>Logout {token.substr(0, 10)}</li>
+    links = <>
+      <li>
+        Profile
+      </li>
+      <li>
+        <a onClick={() => {
+          removeTokenFromStorage()
+          location.reload()
+        }}>
+          Logout
+        </a>
+      </li>
+    </>
   }
 
   return (

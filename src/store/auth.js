@@ -35,6 +35,10 @@ const auth = (set, get) => {
         get().setToken(token, expiresAt)
       }
     },
+    removeTokenFromStorage: () => {
+      localStorage.removeItem('spotimerge_token')
+      localStorage.removeItem('spotimerge_token_expires_at')
+    },
   }
 }
 
