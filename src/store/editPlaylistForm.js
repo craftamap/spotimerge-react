@@ -68,12 +68,12 @@ const editPlaylistForm = (set, get) => ({
 
     const currentTrackIds = new Set(get().fetchedPlaylists[get().editPlaylistForm.selectedPlaylist].tracks.map(t => t.uri))
 
-    console.log(rebuiltTrackIds, currentTrackIds)
+    // console.log(rebuiltTrackIds, currentTrackIds)
 
     const newSongs = difference(rebuiltTrackIds, currentTrackIds).filter((track) => !track.startsWith('spotify:local'))
-    console.log(newSongs)
+    // console.log(newSongs)
     const songsToDelete = difference(currentTrackIds, rebuiltTrackIds)
-    console.log(songsToDelete)
+    // console.log(songsToDelete)
     if (newSongs.length > 0) {
       await get().addTracksToPlaylist(get().editPlaylistForm.selectedPlaylist, newSongs)
     }

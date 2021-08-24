@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import useStore from '../store'
 import PlaylistEntry from '../components/form/PlaylistEntry'
 import Button from '../components/form/Button'
 import CreatePlaylistEntry from '../components/form/CreatePlaylistEntry'
 import styled from '@emotion/styled'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
 
 const Songs = styled.ul`
   padding-left: 0; 
@@ -35,6 +36,7 @@ export default function EditPlaylist () {
   const playlistTracks = useStore((state) => { return state.fetchedPlaylists[state.editPlaylistForm.selectedPlaylist].tracks })
   const updatePlaylistDescription = useStore((state) => { return state.updatePlaylistDescription })
   const isRebuilding = useStore((state) => { return state.editPlaylistForm.isRebuilding })
+  const [showSongs, setShowSongs] = useState(false)
 
   const rows = useMemo(() => playlistTracks.map((row) => {
     return (
@@ -56,8 +58,12 @@ export default function EditPlaylist () {
         </div>
         <Button onClick={updatePlaylistDescription}>Save merged playlists</Button>
         <Button onClick={rebuildSelectedPlaylist} loading={isRebuilding}>Rebuild track list</Button>
+        <h3>Preview your new playlist</h3>
+        <Button onClick={() => {
+          setShowSongs(!showSongs)
+        }}>{showSongs ? <><ChevronUpIcon width="16px"/>hide</> : <><ChevronDownIcon width="16px"/>show</>} songs</Button>
         <Songs>
-          {rows}
+          {showSongs && rows}
         </Songs>
       </div>
     </>

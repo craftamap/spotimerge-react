@@ -47,7 +47,7 @@ const playlists = (set, get) => ({
         offset: i * 100,
       })
     }))
-    console.log(tracks)
+    // console.log(tracks)
 
     const flattenedTracks = tracks.map(t => { return t.items }).flat(2).map((track) => {
       return {
@@ -58,7 +58,7 @@ const playlists = (set, get) => ({
       }
     })
 
-    console.log(flattenedTracks)
+    // console.log(flattenedTracks)
 
     set((state) => ({
       fetchedPlaylists: {
