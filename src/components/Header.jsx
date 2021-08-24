@@ -10,10 +10,7 @@ const StyledHeader = styled.header`
   
   background: black;
   color: white;
-
-  h1 {
-    font-family: sans-serif;
-  }
+  padding: 0 1em;
 
   nav {
     padding: 4px;
