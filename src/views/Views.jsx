@@ -5,8 +5,9 @@ import SelectPlaylist from './SelectPlaylist'
 import SelectPath from './SelectPath'
 import EditPlaylist from './EditPlaylist'
 import CreatePlaylist from './CreatePlaylist'
-import useStore, { Stages } from '../store'
+import useStore from '../store'
 import styled from '@emotion/styled'
+import { Stages } from '../constants'
 
 const Wrapper = styled.div`
   max-width: 800px;

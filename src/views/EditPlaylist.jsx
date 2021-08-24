@@ -30,11 +30,11 @@ const Songs = styled.ul`
 `
 
 export default function EditPlaylist () {
-  const selectedPlaylistTitle = useStore((state) => { return state.fetchedPlaylists[state.selectedPlaylist].information.name })
+  const selectedPlaylistTitle = useStore((state) => { return state.fetchedPlaylists[state.editPlaylistForm.selectedPlaylist].information.name })
   const rebuildSelectedPlaylist = useStore((state) => { return state.rebuildSelectedPlaylist })
-  const playlistTracks = useStore((state) => { return state.fetchedPlaylists[state.selectedPlaylist].tracks })
+  const playlistTracks = useStore((state) => { return state.fetchedPlaylists[state.editPlaylistForm.selectedPlaylist].tracks })
   const updatePlaylistDescription = useStore((state) => { return state.updatePlaylistDescription })
-  const isRebuilding = useStore((state) => { return state.isRebuilding })
+  const isRebuilding = useStore((state) => { return state.editPlaylistForm.isRebuilding })
 
   const rows = useMemo(() => playlistTracks.map((row) => {
     return (
