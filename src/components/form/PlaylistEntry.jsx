@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   border-bottom: 1px grey solid;
 
   &:last-child {
-    border-bottom: 0px grey solid;
+    border-bottom: 0;
   }
 `
 

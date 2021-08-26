@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Button from '../components/form/Button'
+import Input from '../components/form/Input'
 import useStore from '../store'
 
 export default function CreatePlaylist () {
@@ -8,11 +10,11 @@ export default function CreatePlaylist () {
 
   return (<div>
     <label htmlFor="playlistName">
-      <span> Enter a name for your new playlist:</span>
-      <input id="playlistName" value={name} onChange={(e) => {
+      <p>Enter a name for your new playlist:</p>
+      <Input id="playlistName" value={name} onChange={(e) => {
         setName(e.target.value)
       }}/>
-      <button onClick={() => { createPlaylistAndSwitchToEditPlaylist(name) }}></button>
+      <Button onClick={() => { createPlaylistAndSwitchToEditPlaylist(name) }}>Create Playlist</Button>
     </label>
   </div>)
 }
