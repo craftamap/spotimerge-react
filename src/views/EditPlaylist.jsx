@@ -36,6 +36,7 @@ export default function EditPlaylist () {
   const playlistTracks = useStore((state) => { return state.fetchedPlaylists[state.editPlaylistForm.selectedPlaylist].tracks })
   const updatePlaylistDescription = useStore((state) => { return state.updatePlaylistDescription })
   const isRebuilding = useStore((state) => { return state.editPlaylistForm.isRebuilding })
+  const playlistIds = useStore((state) => { return state.editPlaylistForm.playlistIds })
   const [showSongs, setShowSongs] = useState(false)
 
   const rows = useMemo(() => playlistTracks.map((row) => {
@@ -46,14 +47,20 @@ export default function EditPlaylist () {
       </li>
     )
   }), [playlistTracks])
-  const playlistForm = useStore((state) => { return state.editPlaylistForm })
+
+  const playlistRows = useMemo(() =>
+    playlistIds.map((p) => <PlaylistEntry playlistId={p} key={p}/>),
+  [playlistIds])
+
   return (
     <>
       <h2>{selectedPlaylistTitle}</h2>
       <div>
         <h3>Merged Playlists</h3>
         <div>
-          {playlistForm.playlistIds.map((p) => <PlaylistEntry playlistId={p} key={p}/>)}
+          <div>
+            {playlistRows}
+          </div>
           <CreatePlaylistEntry/>
         </div>
         <Button onClick={updatePlaylistDescription}>Save merged playlists</Button>
