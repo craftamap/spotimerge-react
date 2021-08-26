@@ -9,8 +9,7 @@ const auth = (set, get) => {
   return {
     auth: {
       isLoggedIn: false,
-      username: '',
-      id: '',
+      expiresAt: null,
       token: '',
     },
     setToken: (token, expiresAt) => {

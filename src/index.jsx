@@ -6,6 +6,7 @@ import Views from './views/Views'
 import useStore from './store'
 import { Global, css } from '@emotion/react'
 import Flags from './components/Flags'
+import ProfileDialog from './components/ProfileDialog'
 
 const GlobalStyle = css`
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
@@ -23,6 +24,7 @@ function BasePage () {
       <Header />
       <Views />
       <Flags />
+      <ProfileDialog />
     </>
   )
 }

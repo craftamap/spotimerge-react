@@ -39,13 +39,17 @@ const openPopup = () => {
 }
 
 export default function Header (props) {
-  const [isLoggedIn, token, removeTokenFromStorage] = useStore((state) => [state.auth.isLoggedIn, state.auth.token, state.removeTokenFromStorage])
+  const [isLoggedIn, removeTokenFromStorage, showUserInformation] = useStore((state) => [state.auth.isLoggedIn, state.removeTokenFromStorage, state.showUserInformation])
   let links = <li><a onClick={openPopup}>Login</a></li>
 
   if (isLoggedIn) {
     links = <>
       <li>
+        <a onClick={() => {
+          showUserInformation(true)
+        }}>
         Profile
+      </a>
       </li>
       <li>
         <a onClick={() => {

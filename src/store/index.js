@@ -7,6 +7,7 @@ import Stages from './stages'
 import Playlists from './playlists'
 import EditPlaylistForm from './editPlaylistForm'
 import SelectPlaylist from './selectPlaylist'
+import Profile from './profile'
 
 /**
 * @typedef {ReturnType<store>} StoreShape
@@ -23,6 +24,7 @@ const store =
     ...Playlists(set, get),
     ...EditPlaylistForm(set, get),
     ...SelectPlaylist(set, get),
+    ...Profile(set, get),
     isLoading: false,
     setIsLoading: (isLoading) => {
       return set(() => ({
