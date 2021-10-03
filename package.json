@@ -7,7 +7,8 @@
     "lint": "eslint --ext js --ext jsx src/**",
     "watch": "node esbuild.config.js --watch --development",
     "serve": "node esbuild.config.js --serve --development",
-    "build": "node esbuild.config.js"
+    "build": "node esbuild.config.js",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "env": {
@@ -41,6 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
+    "gh-pages": "^3.2.3",
     "typescript": "^4.3.5",
     "typescript-styled-plugin": "^0.18.1"
   },

@@ -1,0 +1,26 @@
+name: Deploy
+
+on: 
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        cache: 'npm'
+    - run: yarn install --frozen-lockfile
+    - run: yarn build
+      env: 
+        REDIRECT_URI: https://craftamap.github.io/spotimerge-react/auth-flow-response.html
+    - name: Deploy with gh-pages
+      run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
