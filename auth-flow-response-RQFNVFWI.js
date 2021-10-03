@@ -1,0 +1,1 @@
+(()=>{var s=window.location.hash,e=new URLSearchParams(s.substring(1));window.opener.postMessage({type:"setToken",token:e.get("access_token"),expiresAt:new Date(new Date().getTime()+(e.get("expires_in")-30)*1e3)});})();
