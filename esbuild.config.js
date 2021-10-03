@@ -20,6 +20,10 @@ const exec = async () => {
     entryNames: '[dir]/[name]-[hash]',
     logLevel: 'debug',
     metafile: true,
+    define: {
+      CLIENT_ID: process.env.CLIENT_ID ? `"${process.env.CLIENT_ID}"` : '"122f5228c6eb45ad865922a575c4a998"',
+      REDIRECT_URI: process.env.REDIRECT_URI ? `"${process.env.REDIRECT_URI}"` : '"http://localhost:8000/auth-flow-response.html"',
+    },
     plugins: [
       htmlPlugin({
         files: [
@@ -35,7 +39,7 @@ const exec = async () => {
               'src/auth-flow-response.js',
             ],
             filename: 'auth-flow-response.html',
-            htmlTemplate: authContent
+            htmlTemplate: authContent,
           },
         ],
       }),
@@ -51,6 +55,5 @@ const exec = async () => {
       .catch(() => process.exit(1))
   }
 }
-
 
 exec()
