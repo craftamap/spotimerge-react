@@ -3,6 +3,7 @@ import { MinusCircleIcon } from '@heroicons/react/outline'
 import React, { useEffect } from 'react'
 import useStore from '../../store'
 import Button from './Button'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div`
   display: grid;
@@ -27,4 +28,8 @@ export default function PlaylistEntry ({ playlistId }) {
       <Button look={'icon'} onClick={() => { removePlaylistFromEditForm(playlistId) }}><MinusCircleIcon width="1.2em" /></Button>
     </Wrapper>
   )
+}
+
+PlaylistEntry.propTypes = {
+  playlistId: PropTypes.string.required,
 }
