@@ -66,9 +66,9 @@ export default function ProfileDialog () {
     content = <Loading />
   } else {
     content = <>
-        <img src={image} width="128px" />
-        <p>Hey there, {displayName}!</p>
-      </>
+      <img src={image} width="128px" />
+      <p>Hey there, {displayName}!</p>
+    </>
   }
 
   return (
@@ -80,7 +80,7 @@ export default function ProfileDialog () {
           }}>Close</Button>
         </DialogHeader>
         <DialogContent>
-           {content}
+          {content}
         </DialogContent>
       </Dialog>
     </Backdrop>

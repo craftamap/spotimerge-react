@@ -32,6 +32,6 @@ function BasePage () {
 useStore.getState().loadTokenFromStorage()
 
 ReactDOM.render(
-    <BasePage />,
-    document.getElementById('root'),
+  <BasePage />,
+  document.getElementById('root'),
 )

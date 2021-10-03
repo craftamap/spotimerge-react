@@ -25,6 +25,10 @@
       "comma-dangle": [
         "error",
         "always-multiline"
+      ],
+      "react/jsx-indent": [
+        "error",
+        2
       ]
     }
   },

@@ -48,8 +48,8 @@ export default function Header (props) {
         <a onClick={() => {
           showUserInformation(true)
         }}>
-        Profile
-      </a>
+          Profile
+        </a>
       </li>
       <li>
         <a onClick={() => {
