@@ -49,6 +49,17 @@ const stages = (set, get) => ({
     const playlistInfo = await get().createPlaylist(playlistName)
     get().switchToEditPlaylist(playlistInfo.id)
   },
+  backToSelectPath: () => {
+    set(() => ({
+      currentStage: Stages.SELECT_PATH,
+    }))
+  },
+  backToSelectPlaylist: () => {
+    // TODO: add dirty check to allow navigation only with confirmation, if the user made any changes
+    set(() => ({
+      currentStage: Stages.SELECT_PLAYLIST,
+    }))
+  },
 })
 
 export default stages

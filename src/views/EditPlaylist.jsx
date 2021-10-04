@@ -4,7 +4,7 @@ import PlaylistEntry from '../components/form/PlaylistEntry'
 import Button from '../components/form/Button'
 import CreatePlaylistEntry from '../components/form/CreatePlaylistEntry'
 import styled from '@emotion/styled'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, ChevronUpIcon, ArrowCircleLeftIcon } from '@heroicons/react/outline'
 
 const Songs = styled.ul`
   padding-left: 0; 
@@ -37,6 +37,7 @@ export default function EditPlaylist () {
   const updatePlaylistDescription = useStore((state) => { return state.updatePlaylistDescription })
   const isRebuilding = useStore((state) => { return state.editPlaylistForm.isRebuilding })
   const playlistIds = useStore((state) => { return state.editPlaylistForm.playlistIds })
+  const backToSelectPlaylist = useStore((state) => state.backToSelectPlaylist)
   const [showSongs, setShowSongs] = useState(false)
 
   const rows = useMemo(() => playlistTracks.map((row) => {
@@ -54,6 +55,9 @@ export default function EditPlaylist () {
 
   return (
     <>
+      <ArrowCircleLeftIcon height={'24px'} onClick={() => {
+        backToSelectPlaylist()
+      }}/>
       <h2>{selectedPlaylistTitle}</h2>
       <div>
         <h3>Merged Playlists</h3>
