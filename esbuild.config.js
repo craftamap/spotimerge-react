@@ -35,6 +35,7 @@ const exec = async () => {
             ],
             filename: 'index.html',
             htmlTemplate: indexContent,
+            title: 'spotimerge',
           },
           {
             entryPoints: [
