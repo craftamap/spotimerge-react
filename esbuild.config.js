@@ -1,6 +1,7 @@
 const esbuild = require('esbuild')
 const fs = require('fs/promises')
 const { htmlPlugin } = require('@craftamap/esbuild-plugin-html')
+const svgrPlugin = require('esbuild-plugin-svgr')
 
 const exec = async () => {
   const watch = process.argv.includes('--watch')
@@ -25,6 +26,7 @@ const exec = async () => {
       REDIRECT_URI: process.env.REDIRECT_URI ? `"${process.env.REDIRECT_URI}"` : '"http://localhost:8000/auth-flow-response.html"',
     },
     plugins: [
+      svgrPlugin(),
       htmlPlugin({
         files: [
           {

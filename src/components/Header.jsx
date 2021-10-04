@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import useStore from '../store'
 import { redirectUri, clientId } from '../constants/defined'
+import Logo from '../logo.svg'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -31,6 +32,17 @@ const StyledHeader = styled.header`
         }
       }
     }
+  }
+`
+
+const LogoAndTitle = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
+
+  h1 {
+    margin: 0;
+    margin-left: 0.5em;
   }
 `
 
@@ -64,7 +76,10 @@ export default function Header (props) {
 
   return (
     <StyledHeader>
-      <h1>spotimerge</h1>
+      <LogoAndTitle>
+        <Logo height="66px" width="66px" />
+        <h1>spotimerge</h1>
+      </LogoAndTitle>
       <nav>
         <ul>
           {links}
