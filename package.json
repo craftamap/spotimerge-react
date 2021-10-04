@@ -4,7 +4,7 @@
   "main": "esbuild.config.js",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --ext js --ext jsx src/**",
+    "lint": "eslint --ext js --ext jsx src/",
     "watch": "node esbuild.config.js --watch --development",
     "serve": "node esbuild.config.js --serve --development",
     "build": "node esbuild.config.js",
