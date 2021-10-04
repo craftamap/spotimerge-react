@@ -11,7 +11,8 @@ the songs in your `#SpotiMerge` playlist.
 
 ## Usage
 
-You can use spotimerge-react under `spotimerge.craftam.app`.
+You can use spotimerge-react under
+[craftamap.github.io/spotimerge-react/](https://craftamap.github.io/spotimerge-react/).
 
 ## Development
 
